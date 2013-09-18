@@ -691,6 +691,9 @@ quiet_cmd_barebox_mkimage = MKIMAGE $@
 barebox.uimage: $(KBUILD_BINARY) FORCE
 	$(call if_changed,barebox_mkimage)
 
+barebox.img: $(KBUILD_BINARY) FORCE
+	$(call if_changed,barebox_mkimage)
+
 ifdef CONFIG_X86
 barebox.S: barebox
 ifdef CONFIG_X86_HDBOOT
@@ -970,7 +973,7 @@ CLEAN_FILES +=	barebox System.map include/generated/barebox_default_env.h \
 		.tmp_kallsyms* common/barebox_default_env* barebox.ldr \
 		scripts/bareboxenv-target barebox-flash-image \
 		Doxyfile.version barebox.srec barebox.s5p barebox.ubl \
-		barebox.uimage barebox.spi barebox.kwb barebox.kwbuart
+		barebox.img barebox.spi MLO barebox.kwb barebox.kwbuart
 
 # Directories & files removed with 'make mrproper'
 MRPROPER_DIRS  += include/config include2 usr/include

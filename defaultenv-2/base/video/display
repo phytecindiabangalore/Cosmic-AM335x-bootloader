@@ -1,0 +1,13 @@
+#!/bin/sh
+
+#Displays
+
+#display=PV_PD050VL1
+#display=PV_PM070WL4
+#display=PV_PD104SLF
+
+#For 3.5 Inch Display
+#display=PV_PD035VL1
+
+#For 7 Inch Display
+display=HT_HT800070I
