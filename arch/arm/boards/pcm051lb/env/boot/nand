@@ -7,6 +7,7 @@ fi
 
 bootargs-ip
 bootargs-display
+bootargs-expansion
 
 global.bootm.image="/dev/nand0.kernel.bb"
 #global.bootm.oftree="/env/oftree"

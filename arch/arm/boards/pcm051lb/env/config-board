@@ -3,6 +3,7 @@
 # board defaults, do not change in running system. Change /env/config
 # instead
 global linux.bootargs.dyn.display
+global linux.bootargs.dyn.expansion
 
 global.hostname=pcm051lb
 global.linux.bootargs.base="console=ttyO0,115200"

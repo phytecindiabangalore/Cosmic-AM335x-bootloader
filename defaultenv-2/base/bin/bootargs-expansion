@@ -1,0 +1,7 @@
+#!/bin/sh
+
+. /env/expansion/expansion
+
+if [ -n $expansion ]; then
+	global.linux.bootargs.dyn.expansion="Devices=$expansion"
+fi

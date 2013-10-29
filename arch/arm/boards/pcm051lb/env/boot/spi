@@ -7,6 +7,7 @@ fi
 
 bootargs-ip
 bootargs-display
+bootargs-expansion
 
 global.bootm.image="/dev/m25p0.kernel"
 # Use rootfs form NAND for now as rootfs partition < 4MB

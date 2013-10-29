@@ -1,0 +1,26 @@
+#!/bin/sh
+
+#expansion
+
+expansion=GPIO,I2C2,UART1,UART2,UART3,SPI1
+
+#You can modify the above value depending upon your usage.
+#Eg. For maximum number of Gpio's pass expansion=ALL-GPIO
+
+#GPIO :		17 Gpio's will be configured.
+#ALL-GPIO :	60 Gpio's (But no other devices will work except NAND, NOR,
+#		10/100 Ethernet, uart0, I2c0, usb0, usb1, can, user button
+#		& led's).
+#RGMII2 :	7 Gpio's & WIFI-BT will not Work i.e, only 10 gpio's of default
+#		17 will work.
+#WIFI-BT :	6 Gpio's & RGMII2 will not work i.e, only 11 gpio's of default
+#		17 will work.
+#UART1FULL :	uart1 will work as full modem i.e, tx, rx, cts, rts
+#		(but i2c2 will not work).
+#I2C2 :		I2c2 will work but uart1 full modem mode will not work.
+#UART1 :	uart1 tx, rx will work (But i2c1 will not work).
+#I2C1 :		I2c1 will work but uart1 will not work.
+#UART2 :	It will configure uart 2 tx, rx.
+#UART3 : 	It will configure uart 3 tx, rx.
+#UART4 : 	It will configure uart 4 tx, rx (But 1 user button will not work).
+#SPI1 : 	It will configure spi1.
