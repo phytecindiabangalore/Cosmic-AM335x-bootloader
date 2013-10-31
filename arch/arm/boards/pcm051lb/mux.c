@@ -32,6 +32,14 @@ static const struct module_pin_mux nand_pin_mux[] = {
 	{-1},
 };
 
+static const struct module_pin_mux user_led_pin_mux[] = {
+	{OFFSET(emu0), (MODE(7) | PULLUP_EN | RXACTIVE)},   /* D11 */
+	{OFFSET(gpmc_a5), (MODE(7) | PULLUDEN)},  /* D5  */
+	{OFFSET(gpmc_a10), (MODE(7) | PULLUDEN)}, /* D4  */
+	{OFFSET(gpmc_a11), (MODE(7) | PULLUDEN)}, /* D10 */
+	{-1},
+};
+
 void pcm051lb_enable_mmc0_pin_mux(void)
 {
 	configure_module_pin_mux(mmc0_pin_mux);
@@ -42,3 +50,7 @@ void pcm051lb_enable_nand_pin_mux(void)
 	configure_module_pin_mux(nand_pin_mux);
 }
 
+void pcm051lb_enable_user_led_pin_mux(void)
+{
+	configure_module_pin_mux(user_led_pin_mux);
+}

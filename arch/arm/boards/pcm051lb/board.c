@@ -40,8 +40,9 @@
 #include <i2c/i2c.h>
 #include <i2c/at24.h>
 #include <mach/bbu.h>
-
 #include "mux.h"
+#include <gpio.h>
+#include <led.h>
 
 /**
  * @brief UART serial port initialization
@@ -79,6 +80,7 @@ mem_initcall(pcm051lb_mem_init);
 * SPI Flash works at 80Mhz however the SPI controller runs with 48MHz.
 * So setup Max speed to be less than the controller speed.
 */
+
 static struct spi_board_info pcm051lb_spi_board_info[] = {
 	{
 		.name		= "m25p80",
@@ -132,6 +134,21 @@ static struct omap_barebox_part pcm051lb_barebox_part = {
 	.nor_offset = SZ_128K,
 	.nor_size = SZ_512K,
 };
+struct gpio_led pcm051lb_leds[] = {
+        {
+                .gpio = 59,
+                .led = {
+                        .name = "heartbeat",
+                },
+        },
+};
+
+static void pcm051lb_led_init(void)
+{
+        led_gpio_register(&pcm051lb_leds[0]);
+        led_set_trigger(LED_TRIGGER_HEARTBEAT, &pcm051lb_leds[0].led);
+
+}
 
 static void pcm051lb_spi_init(void)
 {
@@ -179,13 +196,17 @@ static void pcm051lb_nand_init(void)
 static int pcm051lb_devices_init(void)
 {
 	pcm051lb_enable_mmc0_pin_mux();
-
 	am33xx_add_mmc0(NULL);
 
+	pcm051lb_enable_user_led_pin_mux();
+	pcm051lb_led_init();
 	pcm051lb_spi_init();
 	pcm051lb_eth_init();
 	pcm051lb_i2c_init();
 	pcm051lb_nand_init();
+
+	pcm051lb_enable_user_led_pin_mux();
+
 
 	switch (bootsource_get()) {
 	case BOOTSOURCE_SPI:
